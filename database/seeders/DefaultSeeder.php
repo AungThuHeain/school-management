@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Student;
 use App\Models\Classroom;
+use App\Models\School;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -18,7 +19,7 @@ class DefaultSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['Headmaster','Teacher'];
+        $roles = ['Owner','Headmaster','Teacher'];
         $classes = ['Kindergarten','Grade-1','Grade-2','Grade-3','Grade-4','Grade-5','Grade-6','Grade-7','Grade-8','Grade-9','Grade-10','Grade-11','Grade-12'];
 
         foreach($roles as $role){
@@ -68,6 +69,12 @@ class DefaultSeeder extends Seeder
        //user seeder
        $users = [
             [
+                'name' => 'Owner',
+                'email' => 'owner@gmail.com',
+                'password' => 'password',
+                'role'=>'Owner',
+            ],
+            [
                 'name' => 'Headmaster',
                 'email' => 'headmaster@gmail.com',
                 'password' => 'password',
@@ -83,12 +90,16 @@ class DefaultSeeder extends Seeder
         ];
 
         foreach($users as $user){
-           $user = User::create([
+           $created_user = User::create([
                'name'=>$user['name'],
                'email'=>$user['email'],
                'password'=>bcrypt('password'),
            ]);
-           $user->assignRole($user['role']);
+           $created_user->assignRole($user['role']);
        }
+
+       School::create([
+           'name'=>'School Name',
+       ]);
     }
 }
