@@ -15,30 +15,27 @@ use App\Http\Controllers\ProfileController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/student.php';
 
+//home page
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
+//profile routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
 });
 
-Route::group(['middleware'=>['auth','isAdmin']],function(){
-    Route::get('get-all-roles',function(){
-        return Role::all()->pluck('name');
-    })->name('get.all.roles');
-    Route::resource('users',UserController::class);
+//tenant routes
+Route::group(['middleware'=>['auth','checkSchool']],function(){
+    Route::get('/dashboard/{school_id}', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-require __DIR__.'/student.php';
+

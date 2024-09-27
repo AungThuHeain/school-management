@@ -35,7 +35,7 @@ class LoginController extends Controller
     {
         $this->loginService->login($request);
 
-        return redirect()->intended(RouteServiceProvider::STUDENT_DASHBOARD);
+        return redirect()->intended('/student/dashboard/'.auth('student')->user()->school_id);
 
     }
 

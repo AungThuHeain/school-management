@@ -22,6 +22,10 @@ class DefaultSeeder extends Seeder
         $roles = ['Owner','Headmaster','Teacher'];
         $classes = ['Kindergarten','Grade-1','Grade-2','Grade-3','Grade-4','Grade-5','Grade-6','Grade-7','Grade-8','Grade-9','Grade-10','Grade-11','Grade-12'];
 
+        $school = School::create([
+            'name'=>'Demo School',
+        ]);
+
         foreach($roles as $role){
             Role::create(['name' => $role]);
         }
@@ -31,6 +35,7 @@ class DefaultSeeder extends Seeder
                 'name' => $class
             ]);
         }
+
 
         //admin user seeder
         $admins = [
@@ -61,6 +66,7 @@ class DefaultSeeder extends Seeder
         foreach($students as $user){
             Student::create([
                'name'=>$user['name'],
+               'school_id'=>$school->id,
                'email'=>$user['email'],
                'password'=>bcrypt('password'),
            ]);
@@ -92,14 +98,13 @@ class DefaultSeeder extends Seeder
         foreach($users as $user){
            $created_user = User::create([
                'name'=>$user['name'],
+               'school_id'=>$school->id,
                'email'=>$user['email'],
                'password'=>bcrypt('password'),
            ]);
            $created_user->assignRole($user['role']);
        }
 
-       School::create([
-           'name'=>'School Name',
-       ]);
+
     }
 }

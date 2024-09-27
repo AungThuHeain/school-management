@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-admin-layout>
 <div x-data="user()">
     <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"  >
         <div class="w-full mb-1">
@@ -60,6 +60,9 @@
                                     Name
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                    School
+                                </th>
+                                <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                     Role
                                 </th>
                                 <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -80,6 +83,7 @@
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">{{ $user->email }}</div>
                                     </div>
                                 </td>
+                                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->school->name }}</td>
                                 <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->roles->pluck('name')->first() }}</td>
                                 <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                     <div class="flex items-center">
@@ -123,4 +127,4 @@
     @include('admin.user._modal')
     @include('admin.user._delete_confirm')
 </div>
-</x-app-layout>
+</x-admin-layout>

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'school_id',
     ];
 
     /**
@@ -45,6 +46,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+
+    //relations
+    public function school():BelongsTo
+    {
+        return $this->belongsTo(School::class);
+    }
 
 
 }
