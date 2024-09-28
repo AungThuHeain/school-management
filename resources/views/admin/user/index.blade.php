@@ -29,10 +29,10 @@
             </div>
             <div class="sm:flex">
                 <div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-                    <form class="lg:pr-3" action="#" method="GET">
+                    <form class="lg:pr-3"  method="GET">
                     <label for="users-search" class="sr-only">Search</label>
                     <div class="relative mt-1 lg:w-64 xl:w-96">
-                        <input type="text" name="email" id="users-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search for users">
+                        <input type="text" name="s" id="users-search" value="{{request('s')}}" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder=" Search for users">
                     </div>
                     </form>
                 </div>
@@ -117,7 +117,7 @@
                                 </td>
                             </tr>
                            @empty
-                               <span class="text-center">No more user data!</span>
+                               <span class="flex justify-center dark:text-white ">No more user data!</span>
                            @endforelse
                         </tbody>
                     </table>

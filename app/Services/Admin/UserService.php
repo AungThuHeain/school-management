@@ -9,7 +9,7 @@ class UserService
 {
     public function getAll()
     {
-        return User::with(['roles'])->paginate(10);
+        return User::with(['roles'])->filter(request()->only('s'))->paginate(10);
     }
 
     public function getAllRoles()
@@ -23,5 +23,11 @@ class UserService
         $user->update($request->all());
         $user->syncRoles($request->role);
         return $user;
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
     }
 }

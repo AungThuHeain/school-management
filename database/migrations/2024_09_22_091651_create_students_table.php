@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignUuid('school_id')->constrained('schools')->cascadeOnDelete();
             $table->string('name');
             $table->string('email')->unique();
+            $table->boolean('status')->default(1);
             $table->string('password');
             $table->timestamps();
         });

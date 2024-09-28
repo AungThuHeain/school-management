@@ -10,10 +10,7 @@ class Student extends Authenticatable
 {
     use HasFactory;
 
-    public function schoolStatus()
-    {
-        return $this->school->is_active;
-    }
+
     //relations
     public function school():BelongsTo
     {

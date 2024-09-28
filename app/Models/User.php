@@ -50,6 +50,16 @@ class User extends Authenticatable
     ];
 
 
+    //filter
+    public function scopeFilter($query,$filter)
+    {
+        $query->when($filter['s'] ?? false,function($query,$s){
+            $query->where('name','like','%'.$s.'%')
+            ->orWhereHas('school',function($query)use($s){
+                $query->where('name','like','%'.$s.'%');
+            });
+        });
+    }
 
 
     //relations

@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class School extends Model
 {
@@ -28,7 +29,16 @@ class School extends Model
         'is_active',
     ];
 
+    //scop filter
+    public function scopeFilter($query,$filters){
+        $query->when($filters['s'] ?? false,function($query,$s){
+            $query->where('name','like','%',$s.'%');
+        });
+    }
+
+
     //relationships
+
     public function users():HasMany
     {
         return $this->hasMany(User::class);

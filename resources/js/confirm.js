@@ -16,7 +16,7 @@ export default function confirm() {
                 axios
                 .post(this.deleteUrl, {_method: 'DELETE'})
                 .then((response) => {
-                    location.reload();
+                    window.location.reload();
                 })
                 .catch((error) => {
                     if (error.response.status == 500) {

@@ -50,6 +50,8 @@ class RegisteredUserController extends Controller
             'school_id' => $school->id,
         ]);
 
+        $user->assignRole('Owner');
+
         event(new Registered($user));
 
         Auth::login($user);

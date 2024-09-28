@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Student;
-use App\Models\Classroom;
+use App\Models\ClassRoom;
 use App\Models\School;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
@@ -31,8 +31,9 @@ class DefaultSeeder extends Seeder
         }
 
         foreach($classes as $class){
-            Classroom::create([
+            ClassRoom::create([
                 'name' => $class
+                ,'school_id'=>$school->id
             ]);
         }
 
@@ -71,6 +72,7 @@ class DefaultSeeder extends Seeder
                'password'=>bcrypt('password'),
            ]);
        }
+
 
        //user seeder
        $users = [

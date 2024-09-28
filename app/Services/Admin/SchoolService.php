@@ -8,6 +8,21 @@ class SchoolService
 {
     public function getAll()
     {
-        return School::paginate(10);
+        return School::filter(request()->only('s'))->paginate(10);
     }
+
+    public function update($request,$id)
+    {
+        $school = School::findOrFail($id);
+        $school->update($request->all());
+        return $school;
+    }
+
+    public function destroy($id)
+    {
+        $school = School::findOrFail($id);
+        $school->delete();
+    }
+
+
 }

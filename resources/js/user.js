@@ -11,8 +11,8 @@ export default function user() {
         },
         allRoles:null,
         modalOpen:false,
-        confirmOpen:false,
         editMode:false,
+        errors:{},
 
 
         init()
@@ -54,6 +54,7 @@ export default function user() {
                this.reload();
             })
             .catch((error)=>{
+              this.errors = error.response.data.errors;
               console.log(error);
             })
         },

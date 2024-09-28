@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClassRoomController;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -34,8 +34,10 @@ Route::middleware('auth')->group(function () {
 //tenant routes
 Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::get('/dashboard/{school_id}', function () {
-        return view('dashboard');
+        return view('/web/dashboard');
     })->name('dashboard');
+
+    Route::resource('classes',ClassRoomController::class);
 });
 
 
