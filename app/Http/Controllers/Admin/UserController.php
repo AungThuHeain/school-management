@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Services\Admin\UserService;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
 
 class UserController extends Controller
 {
@@ -59,9 +60,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-        //
+       $this->userService->update($request,$id);
     }
 
     /**
@@ -70,5 +71,11 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    //get all roles
+    public function getAllRoles()
+    {
+        return $this->userService->getAllRoles();
     }
 }

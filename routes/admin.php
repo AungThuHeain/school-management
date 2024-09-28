@@ -25,8 +25,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     //school
     Route::get('schools',[SchoolController::class,'index'])->name('schools');
+    //get roles
+    Route::get('roles',[UserController::class,'getAllRoles'])->name('roles');
     //user
-    Route::get('users',[UserController::class,'index'])->name('users');
+    Route::resource('users',UserController::class);
+
 
 
 });

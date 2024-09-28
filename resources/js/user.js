@@ -3,18 +3,17 @@ import axios from "axios";
 export default function user() {
     return{
         form:{
-            id:'',
-            name:'',
-            email:'',
-            role:'',
-            status:'',
+            id:null,
+            name:null,
+            email:null,
+            role:null,
+            status:null,
         },
         allRoles:null,
         modalOpen:false,
         confirmOpen:false,
         editMode:false,
-        deleteMode:false,
-        allRole:null,
+
 
         init()
         {
@@ -31,23 +30,32 @@ export default function user() {
 
         edit(user)
         {
+            console.log(user.roles[0].name)
             this.modalOpen = true;
             this.editMode = true;
             this.form.id = user.id;
             this.form.name = user.name;
             this.form.email = user.email;
-            this.form.role = user.role;
+            this.form.role = user.roles[0].name;
             this.form.status = user.status;
+
         },
 
         store()
         {
-          alert('store');
+
         },
 
         update()
         {
-          alert('update');
+            console.log(this.form.role)
+            axios.post(route('admin.users.update',{id:this.form.id}),{...this.form,_method:'PUT'})
+            .then((response)=>{
+               this.reload();
+            })
+            .catch((error)=>{
+              console.log(error);
+            })
         },
 
 
@@ -58,7 +66,7 @@ export default function user() {
 
         getAllRole()
         {
-           axios.get(route('get.all.roles'))
+           axios.get(route('admin.roles'))
            .then((response)=>{
              this.allRoles = response.data;
            })
@@ -69,13 +77,17 @@ export default function user() {
 
         clear()
         {
-            this.form.id = '';
-            this.form.name = '';
-            this.form.email = '';
-            this.form.class = '';
-            this.form.role = '';
-            this.form.status = '';
+            this.form.id = null;
+            this.form.name = null;
+            this.form.email = null;
+            this.form.class = null;
+            this.form.role = null;
+            this.form.status = null;
             this.allRoles=null;
+        },
+
+        reload(){
+            window.location = window.location.href.split('?')[0];
         }
     }
  }
