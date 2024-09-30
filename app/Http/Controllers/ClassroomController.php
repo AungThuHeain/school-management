@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClassRoom;
+use App\Services\ClassroomService;
 use Illuminate\Http\Request;
 
 class ClassRoomController extends Controller
 {
+    private $classroomService;
+    public function __construct(ClassroomService $classroomService)
+    {
+        $this->classroomService = $classroomService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $classrooms = $this->classroomService->getAll();
+        return view('web.class.index',compact('classrooms'));
     }
 
     /**

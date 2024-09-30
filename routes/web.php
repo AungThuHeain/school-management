@@ -32,8 +32,8 @@ Route::middleware('auth')->group(function () {
 });
 
 //tenant routes
-Route::group(['middleware'=>['auth','checkSchool']],function(){
-    Route::get('/dashboard/{school_id}', function () {
+Route::group(['middleware'=>['auth','checkSchool'],'prefix'=>'{school_id}'],function(){
+    Route::get('/dashboard', function () {
         return view('/web/dashboard');
     })->name('dashboard');
 
