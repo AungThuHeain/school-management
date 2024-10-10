@@ -16,12 +16,12 @@ class CheckSchool
     public function handle(Request $request, Closure $next): Response
     {
         if(auth()->user()){
-            if((auth()->user()->school->is_active == 0) || (auth()->user()->school_id !== $request->route('school_id')) || auth()->user()->status ==0){
+            if((auth()->user()->school->is_active == 0)  || auth()->user()->status ==0){
                 abort(403);
             }
         }
         if(auth('student')->user()){
-            if((auth('student')->user()->school->is_active == 0) || (auth('student')->user()->school_id !== $request->route('school_id'))){
+            if((auth('student')->user()->school->is_active == 0) ){
                 abort(403);
             }
         }

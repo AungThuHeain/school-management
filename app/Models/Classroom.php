@@ -10,10 +10,19 @@ class ClassRoom extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'school_id'
+    ];
 
+    //filter scope
+    public function scopeFilter($query,$filter)
+    {
+        $query->when($filter['s'] ?? false,function($query,$s){
+            $query->where('name','like','%'.$s.'%');
+        });
+    }
     //relationships
-
-
     public function users():HasMany
     {
         return $this->hasMany(User::class);

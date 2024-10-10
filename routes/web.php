@@ -4,6 +4,8 @@ use App\Http\Controllers\ClassRoomController;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeacherController;
+use App\Models\TeacherModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +34,16 @@ Route::middleware('auth')->group(function () {
 });
 
 //tenant routes
-Route::group(['middleware'=>['auth','checkSchool'],'prefix'=>'{school_id}'],function(){
+Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::get('/dashboard', function () {
         return view('/web/dashboard');
     })->name('dashboard');
 
+    //class
     Route::resource('classes',ClassRoomController::class);
+    //teacher
+    Route::resource('teachers',TeacherController::class);
+
 });
 
 

@@ -8,6 +8,24 @@ class ClassroomService
 {
     public function getAll()
     {
-        return ClassRoom::paginate(10);
+        return ClassRoom::where('school_id',auth()->user()->school_id)->filter(request()->only('s'))->orderBy('id','desc')->paginate(10);
+    }
+
+    public function store($request)
+    {
+
+        $classroom = ClassRoom::create($request->validated());
+    }
+
+    public function update($request)
+    {
+        $classroom = ClassRoom::findOrFail($request->id);
+        $classroom->update($request->validated());
+    }
+
+    public function destroy($id)
+    {
+        $class = ClassRoom::findOrFail($id);
+        $class->delete();
     }
 }

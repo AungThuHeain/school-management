@@ -50,8 +50,5 @@ export default function school(){
         }
 
 
-
-
-
     }
 }

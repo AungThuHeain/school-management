@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClassroomRequest;
 use App\Models\ClassRoom;
 use App\Services\ClassroomService;
 use Illuminate\Http\Request;
@@ -33,9 +34,10 @@ class ClassRoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClassroomRequest $request)
     {
-        //
+
+        $this->classroomService->store($request);
     }
 
     /**
@@ -57,16 +59,17 @@ class ClassRoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ClassRoom $classRoom)
+    public function update(ClassroomRequest $request)
     {
-        //
+
+        $this->classroomService->update($request);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ClassRoom $classRoom)
+    public function destroy(string $id)
     {
-        //
+        $this->classroomService->destroy($id);
     }
 }
