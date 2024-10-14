@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassRoomController;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeacherController;
 use App\Models\TeacherModel;
 
@@ -19,7 +20,6 @@ use App\Models\TeacherModel;
 */
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
-require __DIR__.'/student.php';
 
 //home page
 Route::get('/', function () {
@@ -39,6 +39,8 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
         return view('/web/dashboard');
     })->name('dashboard');
 
+    //roles and permission
+    Route::resource('roles',RoleController::class);
     //class
     Route::resource('classes',ClassRoomController::class);
     //teacher

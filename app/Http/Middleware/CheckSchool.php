@@ -20,11 +20,6 @@ class CheckSchool
                 abort(403);
             }
         }
-        if(auth('student')->user()){
-            if((auth('student')->user()->school->is_active == 0) ){
-                abort(403);
-            }
-        }
 
         return $next($request);
     }

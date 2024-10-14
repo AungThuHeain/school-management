@@ -23,9 +23,6 @@ class RedirectIfAuthenticated
             if (Auth::guard('admin')->check()) {
                 return redirect(RouteServiceProvider::ADMIN_DASHBOARD);
             }
-            if(Auth::guard('student')->check()){
-                return redirect(RouteServiceProvider::STUDENT_DASHBOARD);
-            }
         }
 
         return $next($request);
