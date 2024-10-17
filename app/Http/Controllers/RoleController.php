@@ -26,7 +26,12 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+
+        $permissions = $this->roleService->getPermissions();
+        $groupedPermissions = $permissions->groupBy(function($permission) {
+            return explode('_', $permission->name)[0];
+        });
+        return view('web.role.create',compact('groupedPermissions'));
     }
 
     /**
@@ -34,7 +39,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->roleService->store($request);
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -55,8 +61,9 @@ class RoleController extends Controller
         $groupedPermissions = $permissions->groupBy(function($permission) {
             return explode('_', $permission->name)[0];
         });
-        return $groupedPermissions;
-        return view('web.role.edit',compact('role','permissions'));
+
+
+        return view('web.role.edit',compact('role','groupedPermissions','permissions'));
     }
 
     /**
@@ -64,7 +71,8 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->roleService->update($request,$id);
+        return redirect()->route('roles.index');
     }
 
     /**

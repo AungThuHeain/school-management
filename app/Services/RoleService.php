@@ -22,4 +22,16 @@ class RoleService
         return Permission::all();
     }
 
+    public function update($request,$id)
+    {
+        $role = Role::find($id);
+        $role->syncPermissions($request->permissions);
+    }
+
+    public function store($request)
+    {
+        $role = Role::create(['name' => $request->name,'school_id'=>auth()->user()->school_id]);
+        $role->syncPermissions($request->permissions);
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\School;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,12 +15,15 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['Owner','Headmaster','Teacher','Student'];
+        //first create school for tenant roles
+        $school = School::create([
+            'name'=>'Demo School',
+        ]);
 
-         $ownerRole =   Role::create(['name' => 'Owner']);
-         $headmasterRole =   Role::create(['name' => 'Headmaster']);
-         $teacherRole =   Role::create(['name' => 'Teacher']);
-         $studentRole =   Role::create(['name' => 'Student']);
+         $ownerRole =   Role::create(['name' => 'Owner','school_id'=>$school->id]);
+         $headmasterRole =   Role::create(['name' => 'Headmaster','school_id'=>$school->id]);
+         $teacherRole =   Role::create(['name' => 'Teacher','school_id'=>$school->id]);
+         $studentRole =   Role::create(['name' => 'Student','school_id'=>$school->id]);
 
 
 
@@ -35,7 +39,5 @@ class RoleSeeder extends Seeder
         $ownerRole->givePermissionTo(Permission::all());
         $headmasterRole->givePermissionTo(Permission::where('name','not like','%role_%')->get());
         $teacherRole->givePermissionTo(Permission::where('name','not like','%role_%')->where('name','not like','class_')->get());
-
-
     }
 }

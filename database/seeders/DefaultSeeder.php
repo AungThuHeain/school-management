@@ -22,11 +22,8 @@ class DefaultSeeder extends Seeder
 
         $classes = ['Kindergarten','Grade-1','Grade-2','Grade-3','Grade-4','Grade-5','Grade-6','Grade-7','Grade-8','Grade-9','Grade-10','Grade-11','Grade-12'];
 
-        $school = School::create([
-            'name'=>'Demo School',
-        ]);
-
-
+        //get school for tenant  class and users
+        $school = School::first();
 
         foreach($classes as $class){
             ClassRoom::create([
@@ -34,7 +31,6 @@ class DefaultSeeder extends Seeder
                 ,'school_id'=>$school->id
             ]);
         }
-
 
         //admin user seeder
         $admins = [
@@ -76,6 +72,9 @@ class DefaultSeeder extends Seeder
             ],
 
         ];
+
+        //set school for tenant
+        setPermissionsTeamId($school->id);
 
         foreach($users as $user){
            $created_user = User::create([

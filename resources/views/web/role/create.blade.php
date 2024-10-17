@@ -20,12 +20,12 @@
                           <li>
                             <div class="flex items-center">
                               <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-                              <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">List</span>
+                              <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">Create</span>
                             </div>
                           </li>
                         </ol>
                     </nav>
-                    <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Edit Role</h1>
+                    <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Create Role</h1>
                 </div>
                 <div class="sm:flex">
                     <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
@@ -43,15 +43,14 @@
                 <div class="inline-block min-w-full align-middle">
                     <div class="overflow-hidden shadow">
                         <div class="p-7 px-10 pb-10 bg-white">
-                            <form method="POST" action="{{ route('roles.update', $role->id) }}">
-                                @method('PUT')
+                            <form method="POST" action="{{ route('roles.store') }}">
                                 @csrf
                                 <div class="flex mb-5">
                                     <div class="w-1/2">
                                         <x-input-label for="name" value="Role Name" />
-                                        <input type="text" id="name" value="{{old('name', $role->name)}}" name="name" disabled
+                                        <input type="text" id="name" value="{{old('name')}}" name="name"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                                            disabled>
+                                            >
                                     </div>
                                 </div>
                                 <div class="mb-5">
@@ -64,7 +63,6 @@
                                                 <label class="flex items-center mb-1">
                                                     <input type="checkbox" name="permissions[]"
                                                         value="{{ $permission->name }}"
-                                                        {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}
                                                     class="mr-2 leading-tight">
                                                     <span class="text-gray-700">{{ ucfirst(str_replace('_', ' ', $permission->name))
                                                         }}</span>
@@ -78,12 +76,12 @@
                                         @enderror
                                     </div>
                                 </div>
-                                @if($role->name !== 'Super Admin')
+
                                 <div class="flex justify-end">
                                     <button type="submit"
-                                        class="text-white bg-gradient-to-r from-lime-500 via-lime-600 to-lime-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><span>Update</span></button>
+                                        class="text-white bg-gradient-to-r from-lime-500 via-lime-600 to-lime-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><span>Create</span></button>
                                 </div>
-                                @endif
+
                             </form>
                         </div>
                     </div>
