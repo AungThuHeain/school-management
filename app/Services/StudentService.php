@@ -2,20 +2,19 @@
 
 namespace App\Services;
 
-use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class TeacherService
+class StudentService
 {
     public function getAll()
     {
-        return User::where('school_id',auth()->user()->school_id)->withoutRole(['Owner','Student'])->paginate(10);
+        return User::where('school_id',auth()->user()->school_id)->role(['Student'])->paginate(10);
     }
 
     public function store(Request $request)
     {
-        $teacher = User::create([
+        $student = User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
@@ -24,26 +23,24 @@ class TeacherService
             'school_id'=>$request->school_id,
         ]);
 
-        $teacher->syncRoles($request->role);
+        $student->assignRole('Student');
     }
 
     public function update(Request $request, String $id)
     {
-        $teacher = User::findOrFail($id);
-        $teacher->update([
+        $student = User::findOrFail($id);
+        $student->update([
             'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
             'class_id'=>$request->class_id,
-            'password'=>$request->password ? bcrypt($request->password) : $teacher->password,
+            'password'=>$request->password ? bcrypt($request->password) : $student->password,
         ]);
-
-        $teacher->syncRoles($request->role);
     }
 
     public function destroy(String $id)
     {
-        $teacher = User::findOrFail($id);
-        $teacher->delete();
+        $student = User::findOrFail($id);
+        $student->delete();
     }
 }

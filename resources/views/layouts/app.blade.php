@@ -22,6 +22,11 @@
             <!-- Page Content -->
             <main>
                 <div class="p-4 sm:ml-64 m-14 mr-0">
+                    @if(session('success'))
+                    <div class="flex justify-end absolute top-20 right-0 p-3">
+                        <x-toast :message="session('success')" />
+                    </div>
+                    @endif
                     {{ $slot }}
                 </div>
             </main>

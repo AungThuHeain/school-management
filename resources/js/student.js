@@ -1,7 +1,6 @@
 import axios from "axios";
-import school from "./school";
 
-export default function teacher()
+export default function student()
 {
    return{
      form:{
@@ -11,10 +10,8 @@ export default function teacher()
         email:null,
         phone:null,
         password:null,
-        role:null,
         class_id:null,
      },
-     roles:null,
      classes:null,
      modalOpen:false,
      editMode:false,
@@ -34,33 +31,29 @@ export default function teacher()
      {
         axios.get(route('getRolesClasses'))
         .then((response)=>{
-            this.roles = response.data.roles.filter((role)=>(role.name != 'Student' && role.name != 'Owner'));
             this.classes = response.data.classes;
             })
         .catch((error)=>{
-                console.log(error.response.data.errors);
                 this.errors = error.response.data.errors;
              })
     },
 
 
-     edit($teacher)
+     edit($student)
      {
-        this.clear();
         this.modalOpen = true;
         this.editMode = true;
-        this.form.class_id = $teacher.class_id;
-        this.form.role = $teacher.roles[0].name;
-        this.form.id = $teacher.id;
-        this.form.name = $teacher.name;
-        this.form.email = $teacher.email;
-        this.form.phone = $teacher.phone;
+        this.form.class_id = $student.class_id;
+        this.form.id = $student.id;
+        this.form.name = $student.name;
+        this.form.email = $student.email;
+        this.form.phone = $student.phone;
         this.form.password = null;
      },
 
      update()
      {
-       axios.post(route('teachers.update',this.form.id),{...this.form,_method:'PUT'})
+       axios.post(route('students.update',this.form.id),{...this.form,_method:'PUT'})
        .then((response)=>{
           this.reload();
        })
@@ -71,7 +64,7 @@ export default function teacher()
 
      store()
      {
-        axios.post(route('teachers.store',this.form))
+        axios.post(route('students.store',this.form))
         .then((response)=>{
            this.reload();
         })
@@ -93,7 +86,6 @@ export default function teacher()
         this.form.email = null,
         this.form.phone = null,
         this.form.password = null,
-        this.form.role = null,
         this.form.class_id = null,
         this.errors=null
      },

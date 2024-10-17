@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\RoleService;
 use Illuminate\Http\Request;
+use App\Services\RoleService;
+use App\Http\Requests\RoleRequest;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -37,9 +39,10 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         $this->roleService->store($request);
+        session()->flash('success', 'Role created successfully');
         return redirect()->route('roles.index');
     }
 
@@ -54,7 +57,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(String $id)
     {
         $role = $this->roleService->getById($id);
         $permissions = $this->roleService->getPermissions();
@@ -62,16 +65,16 @@ class RoleController extends Controller
             return explode('_', $permission->name)[0];
         });
 
-
         return view('web.role.edit',compact('role','groupedPermissions','permissions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RoleRequest $request, string $id)
     {
         $this->roleService->update($request,$id);
+        session()->flash('success', 'Role created successfully');
         return redirect()->route('roles.index');
     }
 
@@ -80,6 +83,11 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->roleService->destroy($id);
+    }
+
+    public function getRolesClasses()
+    {
+        return $this->roleService->getRolesClasses();
     }
 }

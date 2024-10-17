@@ -8,6 +8,7 @@ import school  from './school';
 import confirm from './confirm';
 import classroom  from './classroom';
 import teacher from './teacher';
+import student from './student';
 import role from './role';
 
 
@@ -18,4 +19,5 @@ Alpine.data('confirm', confirm);
 Alpine.data('classroom', classroom);
 Alpine.data('teacher',teacher);
 Alpine.data('role',role);
+Alpine.data('student',student);
 Alpine.start();

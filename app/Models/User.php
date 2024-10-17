@@ -28,7 +28,7 @@ class User extends Authenticatable
         'school_id',
         'qr_url',
         'phone',
-        'roles',
+        'class_id',
         'status',
     ];
 
@@ -80,5 +80,8 @@ class User extends Authenticatable
         return $this->belongsTo(School::class);
     }
 
-
+   public function class():BelongsTo
+   {
+        return $this->belongsTo(ClassRoom::class,'class_id');
+    }
 }

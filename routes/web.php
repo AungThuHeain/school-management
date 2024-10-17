@@ -5,6 +5,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Models\TeacherModel;
 
@@ -39,12 +40,16 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
         return view('/web/dashboard');
     })->name('dashboard');
 
+    //get roles and class
+    Route::get('/RolesClasses',[RoleController::class,'getRolesClasses'])->name('getRolesClasses');
     //roles and permission
     Route::resource('roles',RoleController::class);
     //class
     Route::resource('classes',ClassRoomController::class);
     //teacher
     Route::resource('teachers',TeacherController::class);
+    //student
+    Route::resource('students',StudentController::class);
 
 });
 

@@ -29,21 +29,7 @@
                             <p class="text-red-500" x-text="errors.email"></p>
                         </template>
                     </div>
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                        <select id="role" x-model="form.role"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="" >Choose a role</option>
-                            <template x-for="(role,index) in roles" :key="index">
-                                <option :value="role.name" x-text="role.name"
-                                    :selected="editMode && role.name == form.role">
-                                </option>
-                            </template>
-                        </select>
-                        <template x-if="errors.role">
-                            <p class="text-red-500" x-text="errors.role"></p>
-                        </template>
-                    </div>
+
                     <div class="col-span-6 sm:col-span-3">
                         <label for="class_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class</label>
                         <select id="class_id" x-model="form.class_id"
@@ -60,7 +46,7 @@
                         </template>
                     </div>
                     <div class="col-span-6 sm:col-span-3">
-                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
+                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Parent phone</label>
                         <input x-model='form.phone' type="text" phone="phone" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="09 xxxxxxxxx" >
                         <template x-if="errors.phone">
                             <p class="text-red-500" x-text="errors.phone"></p>

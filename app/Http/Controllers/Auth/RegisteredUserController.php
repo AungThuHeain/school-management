@@ -8,12 +8,14 @@ use App\Models\ClassRoom;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
+use Spatie\Permission\Models\Permission;
 
 class RegisteredUserController extends Controller
 {
@@ -52,6 +54,18 @@ class RegisteredUserController extends Controller
                 ,'school_id'=>$school->id
             ]);
         }
+
+
+        //set school for tenant
+        setPermissionsTeamId($school->id);
+        $ownerRole =   Role::create(['name' => 'Owner','school_id'=>$school->id]);
+        $headmasterRole =   Role::create(['name' => 'Headmaster','school_id'=>$school->id]);
+        $teacherRole =   Role::create(['name' => 'Teacher','school_id'=>$school->id]);
+        $studentRole =   Role::create(['name' => 'Student','school_id'=>$school->id]);
+
+        $ownerRole->givePermissionTo(Permission::all());
+        $headmasterRole->givePermissionTo(Permission::where('name','not like','%role_%')->get());
+        $teacherRole->givePermissionTo(Permission::where('name','not like','%role_%')->where('name','not like','class_')->get());
 
         $user = User::create([
             'name' => $request->name,

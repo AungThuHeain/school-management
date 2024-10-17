@@ -49,9 +49,9 @@
                                 <div class="flex mb-5">
                                     <div class="w-1/2">
                                         <x-input-label for="name" value="Role Name" />
-                                        <input type="text" id="name" value="{{old('name', $role->name)}}" name="name" disabled
+                                        <input type="text" id="name" value="{{old('name', $role->name)}}" name="name"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-600 focus:border-purple-600 block w-full p-2.5"
-                                            disabled>
+                                            >
                                     </div>
                                 </div>
                                 <div class="mb-5">
