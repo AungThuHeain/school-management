@@ -50,6 +50,8 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::resource('teachers',TeacherController::class);
     //student
     Route::resource('students',StudentController::class);
+    //qr
+    Route::get('/qr/{url}',[StudentController::class,'qr'])->name('qr');
 
 });
 

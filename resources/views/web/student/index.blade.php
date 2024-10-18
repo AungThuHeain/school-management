@@ -101,13 +101,17 @@
                                             </button>
                                             <x-delete-layout/>
                                          </div>
-                                        <button type="button" data-modal-target="edit-user-modal" data-modal-toggle="edit-user-modal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                            <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4Zm10 10h6v6h-6v-6Zm0-10h6v6h-6V4Zm-4 10h.01v.01H10V14Zm0 4h.01v.01H10V18Zm-3 2h.01v.01H7V20Zm0-4h.01v.01H7V16Zm-3 2h.01v.01H4V18Zm0-4h.01v.01H4V14Z"/>
-                                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M7 7h.01v.01H7V7Zm10 10h.01v.01H17V17Z"/>
-                                              </svg>
-                                            Download QR
-                                        </button>
+                                         <div class="inline-block">
+                                            <input type="hidden" id="qrUrl-{{ $student->id }}" value="{{ route('qr', $student->qr_url) }}">
+                                            <div id="qrcode-{{ $student->id }}" class="qrcode mx-auto mb-3"></div>
+                                            <a href="#" type="button" id="download-qr-{{ $student->id }}"" download="{{ $student->name . '.png' }}"  class="download-qr inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                                <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4Zm10 10h6v6h-6v-6Zm0-10h6v6h-6V4Zm-4 10h.01v.01H10V14Zm0 4h.01v.01H10V18Zm-3 2h.01v.01H7V20Zm0-4h.01v.01H7V16Zm-3 2h.01v.01H4V18Zm0-4h.01v.01H4V14Z"/>
+                                                    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M7 7h.01v.01H7V7Zm10 10h.01v.01H17V17Z"/>
+                                                  </svg>
+                                                Download QR
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                @empty
@@ -123,5 +127,36 @@
             </div>
         </div>
         @include('web.student._modal')
+        <script src="{{ asset('js/qr.min.js') }}"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            var students = @json($students->toArray()); // Convert the teacher data to JavaScript object
+
+            students.data.forEach(student => {
+                // Get the QR URL from the hidden input
+                var qrUrl = document.getElementById(`qrUrl-${student.id}`).value;
+
+                // Generate the QR code for each teacher
+                var qr = QRCode.generatePNG(qrUrl, {
+                    ecclevel: "M",
+                    format: "html",
+                    margin: 4,
+                    modulesize: 8
+                });
+
+                // Create the image element
+                var img = document.createElement("img");
+                // img.src = qr;
+
+                // Append the image to the correct QR code container
+                var qrcodeContainer = document.getElementById(`qrcode-${student.id}`);
+                qrcodeContainer.appendChild(img);
+
+                // Set the download link with the QR image
+                var downloadLink = document.getElementById(`download-qr-${student.id}`);
+                downloadLink.href = qr;
+            });
+        });
+        </script>
     </div>
 </x-app-layout>
