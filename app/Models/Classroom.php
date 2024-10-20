@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ClassRoom extends Model
 {
@@ -26,5 +28,10 @@ class ClassRoom extends Model
     public function users():HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function schedules():BelongsToMany
+    {
+        return $this->belongsToMany(Schedule::class,'class_room_schedule');
     }
 }

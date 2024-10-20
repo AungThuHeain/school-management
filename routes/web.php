@@ -5,8 +5,10 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Models\Schedule;
 use App\Models\TeacherModel;
 
 /*
@@ -42,6 +44,7 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
 
     //get roles and class
     Route::get('/RolesClasses',[RoleController::class,'getRolesClasses'])->name('getRolesClasses');
+    Route::get('/getClasses/{id?}',[ScheduleController::class,'getCLassrooms'])->name('getCLassrooms');
     //roles and permission
     Route::resource('roles',RoleController::class);
     //class
@@ -52,6 +55,7 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::resource('students',StudentController::class);
     //qr
     Route::get('/qr/{url}',[StudentController::class,'qr'])->name('qr');
+    Route::resource('schedules',ScheduleController::class);
 
 });
 
