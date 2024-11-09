@@ -11,6 +11,7 @@ import teacher from './teacher';
 import student from './student';
 import role from './role';
 import schedule from './schedule';
+import attendance from './attendance';
 
 
 window.Alpine = Alpine;
@@ -22,4 +23,5 @@ Alpine.data('teacher',teacher);
 Alpine.data('role',role);
 Alpine.data('student',student);
 Alpine.data('schedule',schedule);
+Alpine.data('attendance',attendance);
 Alpine.start();

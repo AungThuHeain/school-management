@@ -50,7 +50,7 @@
             <div class="overflow-x-auto">
                 <div class="inline-block min-w-full align-middle">
                     <div class="overflow-hidden shadow">
-                        <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
+                        <table class="min-w-full tabel-auto divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                             <thead class="bg-gray-100 dark:bg-gray-700">
                                 <tr>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -74,7 +74,6 @@
                                @forelse ($schedules as $schedule)
                                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
-                                        <img class="w-10 h-10 rounded-full" src="https://flowbite-admin-dashboard.vercel.app/images/users/neil-sims.png" alt="avatar">
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                             <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $schedule->name }}</div>
                                         </div>
@@ -82,14 +81,14 @@
 
                                     <td class="p-4">
                                         @foreach ($schedule->classRooms as $class)
-                                        <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{$class->name}}</span>
+                                        <span class="bg-green-100 inline-block text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{$class->name}}</span>
                                         @endforeach
 
                                     </td>
-                                    <td class="p-4">
+                                    <td class="p-4 text-sm font-normal text-gray-900 dark:text-white">
                                         {{\DateTime::createFromFormat('H:i:s', $schedule->check_in)->format('h:i A')}}
                                     </td>
-                                    <td class="p-4">
+                                    <td class="p-4 text-sm font-normal text-gray-900 dark:text-white">
                                         {{\DateTime::createFromFormat('H:i:s', $schedule->check_out)->format('h:i A')}}
                                     </td>
                                     <td class="p-4 space-x-2 whitespace-nowrap">

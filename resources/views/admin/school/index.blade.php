@@ -78,7 +78,7 @@
 
                                     <td class=" items-center p-4 mr-12 space-x-6 whitespace-nowrap">
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ ($school->users->filter(function($user){return $user->role('Owner');})->pluck('name')[0]) ?? 'Unknown' }}</div>
+                                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $school->owner ?? 'Unknown' }}</div>
                                         </div>
                                     </td>
                                     <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
@@ -102,13 +102,7 @@
                                             </button>
                                             <x-delete-layout/>
                                          </div>
-                                        {{-- <button type="button" data-modal-target="edit-user-modal" data-modal-toggle="edit-user-modal" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                            <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 4h6v6H4V4Zm10 10h6v6h-6v-6Zm0-10h6v6h-6V4Zm-4 10h.01v.01H10V14Zm0 4h.01v.01H10V18Zm-3 2h.01v.01H7V20Zm0-4h.01v.01H7V16Zm-3 2h.01v.01H4V18Zm0-4h.01v.01H4V14Z"/>
-                                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M7 7h.01v.01H7V7Zm10 10h.01v.01H17V17Z"/>
-                                              </svg>
-                                            Print QR
-                                        </button> --}}
+
                                     </td>
                                 </tr>
                                @empty

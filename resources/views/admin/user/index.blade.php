@@ -84,7 +84,7 @@
                                     </div>
                                 </td>
                                 <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->school->name }}</td>
-                                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->roles->pluck('name')->first() }}</td>
+                                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $user->roles }}</td>
                                 <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                     <div class="flex items-center">
                                         @if ($user->status)

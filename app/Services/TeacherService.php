@@ -10,7 +10,7 @@ class TeacherService
 {
     public function getAll()
     {
-        return User::where('school_id',auth()->user()->school_id)->withoutRole(['Owner','Student'])->paginate(10);
+        return User::withoutRole(['Owner','Student'])->paginate(10);
     }
 
     public function store(Request $request)

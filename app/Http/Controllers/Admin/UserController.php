@@ -22,6 +22,8 @@ class UserController extends Controller
     {
         $users = $this->userService->getAll();
 
+        return $users;
+
         return view('admin.user.index',compact('users'));
     }
 

@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\ClassRoomController;
-use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeacherController;
 use App\Models\Schedule;
 use App\Models\TeacherModel;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +56,10 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::resource('students',StudentController::class);
     //qr
     Route::get('/qr/{url}',[StudentController::class,'qr'])->name('qr');
+    //schedule
     Route::resource('schedules',ScheduleController::class);
+    //attendance
+    Route::resource('attendances',AttendanceController::class);
 
 });
 

@@ -9,7 +9,7 @@ class StudentService
 {
     public function getAll()
     {
-        return User::where('school_id',auth()->user()->school_id)->role(['Student'])->paginate(10);
+        return User::role(['Student'])->paginate(10);
     }
 
     public function store(Request $request)

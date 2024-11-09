@@ -8,7 +8,7 @@ class ClassroomService
 {
     public function getAll()
     {
-        return ClassRoom::where('school_id',auth()->user()->school_id)->filter(request()->only('s'))->orderBy('id','desc')->paginate(10);
+        return ClassRoom::filter(request()->only('s'))->orderBy('id','desc')->paginate(10);
     }
 
     public function store($request)

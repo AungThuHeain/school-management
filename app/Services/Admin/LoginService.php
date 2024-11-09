@@ -14,8 +14,6 @@ class LoginService
 
      if(auth('web')->check()){
         auth()->logout();
-     }elseif( auth('student')->check()){
-        auth()->logout();
      }
 
      $request->session()->regenerate();

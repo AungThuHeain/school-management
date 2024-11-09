@@ -44,4 +44,11 @@ class School extends Model
         return $this->hasMany(User::class);
     }
 
+    public function owner(): HasMany
+    {
+        return $this->users()->whereHas('roles', function ($query) {
+            $query->where('name', 'Owner');
+        });
+    }
+
 }

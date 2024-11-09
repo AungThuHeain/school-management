@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Tenant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ClassRoom extends Model
 {
-    use HasFactory;
+    use HasFactory,Tenant;
 
     protected $fillable = [
         'name',

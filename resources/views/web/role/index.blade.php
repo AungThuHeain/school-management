@@ -93,7 +93,7 @@
                                     </td>
                                 </tr>
                                @empty
-                                   <span class="dark:text-white flex justify-center">No more classroom data!</span>
+                                   <span class="dark:text-white flex justify-center">No more role data!</span>
                                @endforelse
                             </tbody>
                         </table>
@@ -101,6 +101,5 @@
                 </div>
             </div>
         </div>
-        @include('web.class._modal')
     </div>
     </x-app-layout>
