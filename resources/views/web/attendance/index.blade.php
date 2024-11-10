@@ -1,6 +1,15 @@
 
 <x-app-layout>
     <div x-data="attendance()">
+        <div x-show="stillUpdate" class="fixed left-0 right-0 z-50 flex items-center justify-center  overflow-hidden top-4 md:inset-0 h-modal sm:h-full bg-gray-200 opacity-50">
+            <div  class="flex z-60 relative justify-center m-auto items-center ">
+                <div class="flex flex-row gap-2">
+                  <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce"></div>
+                  <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.3s]"></div>
+                  <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.5s]"></div>
+                </div>
+            </div>
+        </div>
         <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700"  >
             <div class="w-full mb-1">
                 <div class="mb-4">
@@ -67,7 +76,7 @@
 
                             @foreach ($users as $user)
                             <tr class="hover:bg-gray-100 transition duration-200">
-                                <td class="p-4 border whitespace-nowrap">{{ $user->name }}({{$user->roles->pluck('name')->first()}})</td>
+                                <td class="p-4 border whitespace-nowrap">{{ $user->name }}({{$user->roles->pluck('name')->first()}})    </td>
 
                                  <td class="p-4 border  whitespace-nowrap">{{ $user->class?->name }}</td>
 
@@ -95,13 +104,13 @@
                                         <td class="p-4 border">
                                             <div class="flex items-center space-x-2">
                                                 <label class="flex items-center">
-                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',1)" type="checkbox" @click= name="checkin[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox" value="1" @if (isset($check_in)) checked @endif>
+                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',1)" type="checkbox" @click= name="checkin[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox text-green-600 focus:outline-none focus:ring focus:ring-green-300" value="1" @if (isset($check_in)) checked @endif>
                                                 </label>
                                                 <label class="flex items-center">
-                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',2)" type="checkbox" name="checkout[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox" value="1" @if (isset($check_out)) checked @endif>
+                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',2)" type="checkbox" name="checkout[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox text-green-600 focus:outline-none focus:ring focus:ring-green-300" value="1" @if (isset($check_out)) checked @endif>
                                                 </label>
                                                 <label class="flex items-center">
-                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',3)" type="checkbox" name="leave[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox" value="1" @if (isset($leave)) checked @endif>
+                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',3)" type="checkbox" name="leave[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox text-red-600 focus:outline-none focus:ring focus:ring-red-300" value="1" @if (isset($leave)) checked @endif>
 
                                                 </label>
                                             </div>
