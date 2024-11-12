@@ -17,6 +17,7 @@ export default function attendance()
             axios.post(route('attendances.store'),form)
             .then((response)=>{
                this.stillUpdate = false;
+
             })
             .catch((error)=>{
                 this.stillUpdate = false;

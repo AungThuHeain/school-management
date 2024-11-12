@@ -65,7 +65,7 @@
                                                     <input type="checkbox" name="permissions[]"
                                                         value="{{ $permission->name }}"
                                                         {{ $role->hasPermissionTo($permission->name) ? 'checked' : '' }}
-                                                    class="mr-2 leading-tight">
+                                                    class="mr-2 leading-tight text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-green-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                     <span class="text-gray-700">{{ ucfirst(str_replace('_', ' ', $permission->name))
                                                         }}</span>
                                                 </label>

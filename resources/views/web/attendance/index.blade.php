@@ -1,12 +1,16 @@
 
 <x-app-layout>
     <div x-data="attendance()">
-        <div x-show="stillUpdate" class="fixed left-0 right-0 z-50 flex items-center justify-center  overflow-hidden top-4 md:inset-0 h-modal sm:h-full bg-gray-200 opacity-50">
-            <div  class="flex z-60 relative justify-center m-auto items-center ">
+        <div x-show="stillUpdate" class="fixed left-0 right-0 z-50 flex items-center justify-center overflow-hidden top-4 md:inset-0 h-modal sm:h-full bg-gray-200 bg-opacity-20">
+            <div class="flex z-60 relative justify-center m-auto items-center">
                 <div class="flex flex-row gap-2">
-                  <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce"></div>
-                  <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.3s]"></div>
-                  <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.5s]"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.3s]"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.5s]"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.7s]"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.9s]"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.11s]"></div>
+                    <div class="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.13s]"></div>
                 </div>
             </div>
         </div>
@@ -102,16 +106,15 @@
                                                 ->first();
                                         @endphp
                                         <td class="p-4 border">
-                                            <div class="flex items-center space-x-2">
+                                            <div class="flex items-center space-x-2" x-data="{ checkIn: {{ isset($check_in) ? 'true' : 'false' }}, checkOut: {{ isset($check_out) ? 'true' : 'false' }}, leave: {{ isset($leave) ? 'true' : 'false' }} }">
                                                 <label class="flex items-center">
-                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',1)" type="checkbox" @click= name="checkin[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox text-green-600 focus:outline-none focus:ring focus:ring-green-300" value="1" @if (isset($check_in)) checked @endif>
+                                                    <input x-model = "checkIn" @click="leave = false ; deleteOrStore( {{$user->id}}, '{{ $date_picker }}', 1)" type="checkbox"  name="checkin[{{ $date_picker }}][{{ $user->id }}]" class="checkin_checkout rounded form-checkbox text-green-600 focus:outline-none focus:ring focus:ring-green-300" value="1" @if (isset($check_in)) checked @endif>
                                                 </label>
                                                 <label class="flex items-center">
-                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',2)" type="checkbox" name="checkout[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox text-green-600 focus:outline-none focus:ring focus:ring-green-300" value="1" @if (isset($check_out)) checked @endif>
+                                                    <input x-model = "checkOut" @click="leave = false ; deleteOrStore( {{$user->id}},'{{$date_picker}}',2)" type="checkbox" name="checkout[{{ $date_picker }}][{{ $user->id }}]" class="checkin_checkout  rounded form-checkbox text-green-600 focus:outline-none focus:ring focus:ring-green-300" value="1" @if (isset($check_out)) checked @endif>
                                                 </label>
                                                 <label class="flex items-center">
-                                                    <input @click="deleteOrStore({{$user->id}},'{{$date_picker}}',3)" type="checkbox" name="leave[{{ $date_picker }}][{{ $user->id }}]" class="form-checkbox text-red-600 focus:outline-none focus:ring focus:ring-red-300" value="1" @if (isset($leave)) checked @endif>
-
+                                                    <input x-model = "leave" @click="checkIn = false; checkOut = false; deleteOrStore( {{$user->id}},'{{$date_picker}}',3)" type="checkbox" name="leave[{{ $date_picker }}][{{ $user->id }}]" class=" leave rounded form-checkbox text-red-600 focus:outline-none focus:ring focus:ring-red-300" value="1" @if (isset($leave)) checked @endif>
                                                 </label>
                                             </div>
                                         </td>

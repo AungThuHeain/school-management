@@ -1,10 +1,10 @@
-<div x-show="modalOpen" x-cloak class="fixed left-0 right-0 z-50 flex items-center justify-center  overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full" >
+<div x-show="modalOpen" x-cloak class="fixed left-0 right-0 z-50 flex items-center justify-center  overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full bg-gray-700 bg-opacity-60" >
     <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
             <!-- Modal header -->
             <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
-                <h3 class="text-xl font-semibold dark:text-white" x-text="editMode ? 'Edit classroom' : 'Add new schedule'"></h3>
+                <h3 class="text-xl font-semibold dark:text-white" x-text="editMode ? 'Edit schedule' : 'Add new schedule'"></h3>
                 <button @click="modalOpen = false" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white" >
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
@@ -58,7 +58,7 @@
                         <div class="flex flex-wrap gap-3 ms-3">
                             <template x-for="clas in Classes" :key="clas.id">
                                 <label class="basis-1/5">
-                                    <input @click="toggleClass(clas.id)" type="checkbox" :value="clas.id" x-model="form.classes[]"  :checked="form.classes.includes(clas.id)" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <input @click="toggleClass(clas.id)" type="checkbox" :value="clas.id" x-model="form.classes[]"  :checked="form.classes.includes(clas.id)" class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-green-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <span x-text="clas.name"></span>
                                 </label>
                             </template>
