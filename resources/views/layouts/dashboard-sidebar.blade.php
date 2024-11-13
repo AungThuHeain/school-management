@@ -47,11 +47,17 @@
          <li>
             <a href="{{route('attendances.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-body-scan-fill"></i>
-               <span class="flex-1 ms-3 whitespace-nowrap">Student Attendance</span>
-              <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\Attendance::where('school_id',auth()->user()->school_id)->count()}}</span>
+               <span class="flex-1 ms-3 whitespace-nowrap">Attendance</span>
+
             </a>
          </li>
+         <li>
+            <a href="{{route('reports')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <i class="ri-file-chart-fill"></i>
+               <span class="flex-1 ms-3 whitespace-nowrap">Report</span>
 
+            </a>
+         </li>
        </ul>
     </div>
  </aside>

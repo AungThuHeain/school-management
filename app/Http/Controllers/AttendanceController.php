@@ -19,8 +19,9 @@ class AttendanceController extends Controller
     public function index()
     {
         $users = $this->attendanceService->getUsers();
+        $classes = $this->attendanceService->getClasses();
 
-        return view('web.attendance.index',compact('users'));
+        return view('web.attendance.index',compact('users','classes'));
     }
 
     /**
@@ -69,5 +70,12 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
+    }
+
+    public function report()
+    {
+        $users = $this->attendanceService->getUsers();
+        $classes = $this->attendanceService->getClasses();
+        return view('web.report.index',compact('users','classes'));
     }
 }

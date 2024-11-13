@@ -11,6 +11,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\AttendanceController;
+use App\Models\Attendance;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +59,11 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::get('/qr/{url}',[StudentController::class,'qr'])->name('qr');
     //schedule
     Route::resource('schedules',ScheduleController::class);
+    //report
+    Route::get('reports',[AttendanceController::class,'report'])->name('reports');
     //attendance
     Route::resource('attendances',AttendanceController::class);
+
 
 });
 

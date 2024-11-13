@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckEduYear;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StudentRequest extends FormRequest
@@ -25,9 +26,11 @@ class StudentRequest extends FormRequest
         return [
             'name'=>['required','string','max:255'],
             'phone'=>['required','string','max:255','unique:users,phone,'.$this->id],
-            'email'=>['required','email','unique:users,email,'.$this->id],
-            'password'=>[$isUpdate,'min:8'],
+            // 'email'=>['nullable','email','unique:users,email,'.$this->id],
+            // 'password'=>['nullable','min:8'],
             'class_id'=>['required','exists:class_rooms,id'],
+            'roll_no'=>['nullable','string','max:255'],
+            'edu_year'=>['nullable','string','max:255',new CheckEduYear()],
         ];
     }
 }

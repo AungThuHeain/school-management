@@ -10,6 +10,7 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <script src="{{asset('js/time.js')}}"></script>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -30,6 +31,8 @@
                     {{ $slot }}
                 </div>
             </main>
+            <div class="clockStyle fixed left-1 bottom-1 font-bold" id="clock"></div>
         </div>
     </body>
 </html>
+

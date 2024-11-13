@@ -31,6 +31,8 @@ class User extends Authenticatable
         'phone',
         'class_id',
         'status',
+        'roll_no',
+        'edu_year',
     ];
 
     /**
@@ -69,6 +71,9 @@ class User extends Authenticatable
         $query->when($filter['s'] ?? false,function($query,$s){
             $query->where('name','like','%'.$s.'%')
             ->orWhereHas('school',function($query)use($s){
+                $query->where('name','like','%'.$s.'%');
+            })
+            ->orWhereHas('class',function($query)use($s){
                 $query->where('name','like','%'.$s.'%');
             });
         });

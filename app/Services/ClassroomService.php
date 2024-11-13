@@ -13,7 +13,6 @@ class ClassroomService
 
     public function store($request)
     {
-
         $classroom = ClassRoom::create($request->validated());
     }
 

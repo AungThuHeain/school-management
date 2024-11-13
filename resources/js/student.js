@@ -11,6 +11,8 @@ export default function student()
         phone:null,
         password:null,
         class_id:null,
+        role_id:null,
+        edu_year:null,
      },
      classes:null,
      modalOpen:false,
@@ -49,6 +51,8 @@ export default function student()
         this.form.email = $student.email;
         this.form.phone = $student.phone;
         this.form.password = null;
+        this.form.roll_no = $student.roll_no;
+        this.form.edu_year = $student.edu_year;
      },
 
      update()

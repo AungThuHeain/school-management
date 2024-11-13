@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Attendance;
+use App\Models\ClassRoom;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,21 @@ class AttendanceService
 {
     public function getUsers()
     {
-         return User::withoutRole('Owner')->get();
+        if(request('class_filter') == 'all')
+        {
+            return User::withoutRole('Owner')->filter(request()->only('s'))->get();
+        }
+
+        if(request()->has('class_filter') ){
+            return User::where('class_id',request('class_filter'))->withoutRole('Owner')->filter(request()->only('s'))->get();
+        }
+
+         return User::withoutRole('Owner')->filter(request()->only('s'))->get();
+    }
+
+    public function getClasses()
+    {
+        return ClassRoom::all();
     }
 
     public function store(Request $request)

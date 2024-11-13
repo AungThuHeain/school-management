@@ -22,13 +22,13 @@
                             <p class="text-red-500" x-text="errors.name"></p>
                         </template>
                     </div>
-                    <div class="col-span-6 sm:col-span-3">
+                    {{-- <div class="col-span-6 sm:col-span-3">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <input x-model='form.email' type="email" email="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="example@gmail.com" >
                         <template x-if="errors.email">
                             <p class="text-red-500" x-text="errors.email"></p>
                         </template>
-                    </div>
+                    </div> --}}
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="class_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Class</label>
@@ -52,7 +52,7 @@
                             <p class="text-red-500" x-text="errors.phone"></p>
                         </template>
                     </div>
-                    <div class="col-span-6 sm:col-span-3">
+                    {{-- <div class="col-span-6 sm:col-span-3">
                         <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                         <input x-model='form.password' type="password" password="password" id="password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="********" >
 
@@ -63,6 +63,22 @@
 
                         <template x-if="errors.password">
                             <p class="text-red-500" x-text="errors.password"></p>
+                        </template>
+                    </div> --}}
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="roll_no" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roll number</label>
+                        <input x-model='form.roll_no' type="text" name="roll_no" id="roll_no" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Roll number" >
+
+                        <template x-if="errors.roll_no">
+                            <p class="text-red-500" x-text="errors.roll_no"></p>
+                        </template>
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                        <label for="edu_year" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Education year</label>
+                        <input x-model='form.edu_year' type="text" name="edu_year" id="edu_year" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="2023-2024" >
+
+                        <template x-if="errors.edu_year">
+                            <p class="text-red-500" x-text="errors.edu_year"></p>
                         </template>
                     </div>
                 </div>

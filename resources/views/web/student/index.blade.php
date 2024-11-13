@@ -56,14 +56,21 @@
                         <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
                             <thead class="bg-gray-100 dark:bg-gray-700">
                                 <tr>
+
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                          Name
                                     </th>
+                                    <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        Roll no
+                                   </th>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                         Class
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                         Parent phone
+                                    </th>
+                                    <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        Education year
                                     </th>
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                         Actions
@@ -73,10 +80,16 @@
                             <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                @forelse ($students as $student)
                                <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+
                                     <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
                                         <img class="w-10 h-10 rounded-full" src="https://flowbite-admin-dashboard.vercel.app/images/users/neil-sims.png" alt="avatar">
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                             <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $student->name }}</div>
+                                        </div>
+                                    </td>
+                                    <td class=" p-4 mr-12 space-x-6 whitespace-nowrap">
+                                        <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $student->roll_no }}</div>
                                         </div>
                                     </td>
                                     <td class=" p-4 mr-12 space-x-6 whitespace-nowrap">
@@ -87,6 +100,11 @@
                                     <td class="p-4 mr-12 space-x-6 whitespace-nowrap">
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                             <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $student->phone }}</div>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 mr-12 space-x-6 whitespace-nowrap">
+                                        <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                            <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $student->edu_year }}</div>
                                         </div>
                                     </td>
                                     <td class="p-4 space-x-2 whitespace-nowrap">

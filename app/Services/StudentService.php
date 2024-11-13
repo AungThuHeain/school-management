@@ -16,11 +16,13 @@ class StudentService
     {
         $student = User::create([
             'name'=>$request->name,
-            'email'=>$request->email,
+            // 'email'=>$request->email,
             'phone'=>$request->phone,
-            'password'=>bcrypt($request->password),
+            // 'password'=>bcrypt($request->password),
             'class_id'=>$request->class_id,
             'school_id'=>$request->school_id,
+            'roll_no'=>$request->roll_no,
+            'edu_year'=>$request->edu_year,
         ]);
 
         $student->assignRole('Student');
@@ -31,10 +33,12 @@ class StudentService
         $student = User::findOrFail($id);
         $student->update([
             'name'=>$request->name,
-            'email'=>$request->email,
+            // 'email'=>$request->email,
             'phone'=>$request->phone,
             'class_id'=>$request->class_id,
-            'password'=>$request->password ? bcrypt($request->password) : $student->password,
+            // 'password'=>$request->password ? bcrypt($request->password) : $student->password,
+            'roll_no'=>$request->roll_no,
+            'edu_year'=>$request->edu_year,
         ]);
     }
 

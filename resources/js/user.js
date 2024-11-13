@@ -8,6 +8,7 @@ export default function user() {
             email:null,
             role:null,
             status:null,
+
         },
         allRoles:null,
         modalOpen:false,
@@ -38,6 +39,7 @@ export default function user() {
             this.form.email = user.email;
             this.form.role = user.roles[0].name;
             this.form.status = user.status;
+
 
         },
 

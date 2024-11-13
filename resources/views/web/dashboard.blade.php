@@ -9,5 +9,5 @@
             </div>
         </div>
     </div>
-    @yield('content');
+    @yield('content')
 </x-app-layout>
