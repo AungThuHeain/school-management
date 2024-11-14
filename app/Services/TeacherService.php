@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Teacher;
 use App\Models\User;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Imports\TeacherImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherService
 {
@@ -45,5 +47,11 @@ class TeacherService
     {
         $teacher = User::findOrFail($id);
         $teacher->delete();
+    }
+
+    public function import(Request $request)
+    {
+        Excel::import(new TeacherImport, $request->file('file'));
+        return back();
     }
 }

@@ -1,5 +1,4 @@
 import axios from "axios";
-import school from "./school";
 
 export default function teacher()
 {
@@ -19,6 +18,11 @@ export default function teacher()
      modalOpen:false,
      editMode:false,
      errors:{},
+     //import
+     importModalOpen:false,
+     file:null,
+
+
 
      init(){
       this.getRoleAndClass();
@@ -96,6 +100,41 @@ export default function teacher()
         this.form.role = null,
         this.form.class_id = null,
         this.errors=null
+     },
+
+
+     //excel import
+     openImportModal()
+     {
+        this.importModalOpen = true;
+     },
+     handleFileUpload(event)
+     {
+        this.file = event.target.files[0];
+        console.log(this.file);
+     },
+     importExcel()
+     {
+        if (!this.file) {
+            console.log("No file selected.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file',this.file);
+
+       axios.post(route('teachers.import'),formData,{
+          headers:{
+            'Content-Type':'multipart/form-data'
+          }
+       })
+       .then((response)=>{
+        this.importModalOpen = false;
+       })
+       .catch((error)=>{
+        this.errors = error.response.data.errors;
+        console.log(error.response.data.errors);
+       })
      },
 
    }

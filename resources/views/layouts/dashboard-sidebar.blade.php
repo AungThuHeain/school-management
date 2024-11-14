@@ -16,43 +16,42 @@
             </a>
          </li>
           <li>
-             <a href="{{route('classes.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <a href="{{route('classes.index')}}" class="{{ Request::routeIs('classes.*') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-artboard-fill"></i>
                 <span class="flex-1 ms-3 whitespace-nowrap">Class</span>
                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\ClassRoom::count()}}</span>
-
              </a>
           </li>
           <li>
-            <a href="{{route('teachers.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="{{route('teachers.index')}}" class=" {{ Request::routeIs('teachers.*') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-presentation-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Teacher</span>
                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\User::Role('Teacher')->count()}}</span>
             </a>
          </li>
           <li>
-             <a href="{{route('students.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+             <a href="{{route('students.index')}}" class="{{ Request::routeIs('students.*') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-group-3-fill"></i>
                 <span class="flex-1 ms-3 whitespace-nowrap">Student</span>
                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\User::Role('Student')->count()}}</span>
              </a>
           </li>
           <li>
-            <a href="{{route('schedules.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="{{route('schedules.index')}}" class="{{ Request::routeIs('schedules.*') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-calendar-schedule-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Schedule</span>
               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\Schedule::count()}}</span>
             </a>
          </li>
          <li>
-            <a href="{{route('attendances.index')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="{{route('attendances.index')}}" class="{{ Request::routeIs('attendances.*') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-body-scan-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Attendance</span>
 
             </a>
          </li>
          <li>
-            <a href="{{route('reports')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <a href="{{route('reports')}}" class="{{ Request::routeIs('reports') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-file-chart-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Report</span>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExcelImportRequest;
 use App\Http\Requests\TeacherRequest;
 use App\Models\Teacher;
 use App\Services\TeacherService;
@@ -69,5 +70,10 @@ class TeacherController extends Controller
     public function destroy(String $id)
     {
         $this->teacherService->destroy($id);
+    }
+
+    public function import(ExcelImportRequest $request)
+    {
+        $this->teacherService->import($request);
     }
 }

@@ -52,6 +52,7 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
     //class
     Route::resource('classes',ClassRoomController::class);
     //teacher
+    Route::post('/teachers/import',[TeacherController::class,'import'])->name('teachers.import');
     Route::resource('teachers',TeacherController::class);
     //student
     Route::resource('students',StudentController::class);

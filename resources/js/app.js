@@ -14,6 +14,8 @@ import schedule from './schedule';
 import attendance from './attendance';
 
 
+
+
 window.Alpine = Alpine;
 Alpine.data('user', user);
 Alpine.data('school', school);
