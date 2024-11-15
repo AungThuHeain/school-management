@@ -21,6 +21,7 @@ export default function teacher()
      //import
      importModalOpen:false,
      file:null,
+     stillImporting:false,
 
 
 
@@ -114,6 +115,7 @@ export default function teacher()
      },
      importExcel()
      {
+        this.stillImporting = true;
         if (!this.file) {
             console.log("No file selected.");
             return;
@@ -128,10 +130,13 @@ export default function teacher()
           }
        })
        .then((response)=>{
-        this.importModalOpen = false;
+            this.stillImporting = false;
+            this.reload();
        })
        .catch((error)=>{
-        this.errors = error.response.data.errors;
+            this.stillImporting = false;
+            this.errors = error.response.data.errors;
+            console.log(error.response.data.errors);
        })
      },
      closeImportModel()

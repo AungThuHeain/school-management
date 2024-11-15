@@ -20,6 +20,8 @@
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
            @include('layouts.dashboad-navbar')
            @include('layouts.dashboard-sidebar')
+
+
             <!-- Page Content -->
             <main>
                 <div class="p-4 sm:ml-64 m-14 mr-0">

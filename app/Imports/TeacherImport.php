@@ -12,10 +12,16 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 
 class TeacherImport implements ToModel, WithHeadingRow,WithValidation
 {
-
-
-
-
+    public function rules(): array
+    {
+        return [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'phone'    => 'required|string|max:15|unique:users,phone',
+            'role'     => 'required|string|exists:roles,name', // Assuming roles are validated
+        ];
+    }
     /**
     * @param array $row
     *
@@ -37,15 +43,4 @@ class TeacherImport implements ToModel, WithHeadingRow,WithValidation
         return $user;
     }
 
-
-    public function rules(): array
-    {
-        return [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8',
-            'phone'    => 'nullable|string|max:15',
-            'role'     => 'nullable|string|exists:roles,name', // Assuming roles are validated
-        ];
-    }
 }
