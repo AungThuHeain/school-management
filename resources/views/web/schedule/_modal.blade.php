@@ -16,7 +16,7 @@
                         <input type="hidden" name="school_id" x-init="form = { school_id: '{{auth()->user()->school_id}}'}" x-model="form.school_id">
                         <div class="col-span-6 sm:col-span-3">
                             <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Schedule Name</label>
-                            <input x-model='form.name' type="text" name="first-name" id="first-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Classroom name" >
+                            <input x-model='form.name' type="text" name="first-name" id="first-name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Schedule name" >
                             <template x-if="errors.name">
                                 <p class="text-red-500" x-text="errors.name"></p>
                             </template>

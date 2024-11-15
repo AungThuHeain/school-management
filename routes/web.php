@@ -55,6 +55,7 @@ Route::group(['middleware'=>['auth','checkSchool','verified']],function(){
     Route::post('/teachers/import',[TeacherController::class,'import'])->name('teachers.import');
     Route::resource('teachers',TeacherController::class);
     //student
+    Route::post('/students/import',[StudentController::class,'import'])->name('students.import');
     Route::resource('students',StudentController::class);
     //qr
     Route::get('/qr/{url}',[StudentController::class,'qr'])->name('qr');
@@ -66,6 +67,7 @@ Route::group(['middleware'=>['auth','checkSchool','verified']],function(){
     Route::resource('attendances',AttendanceController::class);
     //demo import fiele
     Route::get('teacher-demo',[TeacherController::class,'downloadDemo'])->name('teacher-demo');
+    Route::get('student-demo',[StudentController::class,'downloadDemo'])->name('student-demo');
 
 
 });

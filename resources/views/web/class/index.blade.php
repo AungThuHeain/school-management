@@ -61,6 +61,10 @@
                                     </th>
 
                                     <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        Members
+                                    </th>
+
+                                    <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
                                         Actions
                                     </th>
                                 </tr>
@@ -72,6 +76,12 @@
                                         <img class="w-10 h-10 rounded-full" src="https://flowbite-admin-dashboard.vercel.app/images/users/neil-sims.png" alt="avatar">
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                             <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $class->name }}</div>
+                                        </div>
+                                    </td>
+                                    <td class=" items-center p-4 mr-12 space-x-6 whitespace-nowrap">
+                                        <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                                            <div class="text-base font-semibold text-gray-900 dark:text-white">Students : {{$class->users()->role('Student')->count()}}</div>
+                                            <div class="text-base font-semibold text-gray-900 dark:text-white">Teachers : {{$class->users()->role('Teacher')->count()}}</div>
                                         </div>
                                     </td>
                                     <td class="p-4 space-x-2 whitespace-nowrap">

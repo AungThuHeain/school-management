@@ -143,6 +143,7 @@ export default function teacher()
      {
         this.importModalOpen = false;
         this.file = null;
+        this.errors = null;
         document.getElementById('file').value = null;
      }
 

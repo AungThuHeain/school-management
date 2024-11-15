@@ -28,7 +28,7 @@ class ClassRoom extends Model
     //relationships
     public function users():HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class,'class_id');
     }
 
     public function schedules():BelongsToMany

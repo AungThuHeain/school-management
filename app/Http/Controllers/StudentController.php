@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExcelImportRequest;
 use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use App\Services\StudentService;
@@ -69,5 +70,15 @@ class StudentController extends Controller
     public function destroy(String $id)
     {
         $this->studentService->destroy($id);
+    }
+
+    public function import(ExcelImportRequest $request)
+    {
+        $this->studentService->import($request);
+    }
+
+    public function downloadDemo()
+    {
+         return response()->download(storage_path('demo/student-import.xls'));
     }
 }

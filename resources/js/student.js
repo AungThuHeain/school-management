@@ -18,6 +18,10 @@ export default function student()
      modalOpen:false,
      editMode:false,
      errors:{},
+    //import
+    importModalOpen:false,
+    file:null,
+    stillImporting:false,
 
      init(){
       this.getRoleAndClass();
@@ -93,6 +97,49 @@ export default function student()
         this.form.class_id = null,
         this.errors=null
      },
+    //excel import
+    openImportModal()
+    {
+        this.importModalOpen = true;
+    },
+    handleFileUpload(event)
+    {
+        this.file = event.target.files[0];
+        console.log(this.file);
+    },
+    importExcel()
+    {
+        this.stillImporting = true;
+        if (!this.file) {
+            console.log("No file selected.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('file',this.file);
+
+    axios.post(route('students.import'),formData,{
+        headers:{
+            'Content-Type':'multipart/form-data'
+        }
+    })
+    .then((response)=>{
+            this.stillImporting = false;
+            this.reload();
+    })
+    .catch((error)=>{
+            this.stillImporting = false;
+            this.errors = error.response.data.errors;
+            console.log(error.response.data.errors);
+    })
+    },
+    closeImportModel()
+    {
+        this.importModalOpen = false;
+        this.file = null;
+        this.errors = null;
+        document.getElementById('file').value = null;
+    }
 
    }
 }

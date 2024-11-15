@@ -43,9 +43,17 @@
                             <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                                     <select id="countries" name="year_filter" onchange="if(this.value != 0) this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    <option value="all">Filter by class</option>
-                                    @foreach ($classes as $class)
-                                        <option value="{{$class->id}}" {{request('class_filter') == $class->id ? 'selected' : ''}}>{{$class->name}}</option>
+                                    <option value="all">Filter by Year</option>
+                                    @php
+                                        $last_years = [];
+                                        $current_year = date('Y');
+                                        for($i=2020;$i < $current_year ; $current_year --) {
+                                            $last_years[] = $current_year;
+                                        }
+                                    @endphp
+
+                                    @foreach ($last_years as $last_year)
+                                        <option value="{{$last_year}}" {{request('year_filter') == $last_year ? 'selected' : ''}}>{{$last_year}}</option>
                                     @endforeach
                                     </select>
                                 </div>

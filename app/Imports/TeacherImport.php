@@ -4,10 +4,9 @@ namespace App\Imports;
 
 use Log;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
 class TeacherImport implements ToModel, WithHeadingRow,WithValidation
@@ -19,6 +18,7 @@ class TeacherImport implements ToModel, WithHeadingRow,WithValidation
             'email'    => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
             'phone'    => 'required|string|max:15|unique:users,phone',
+            'classroom_id'=> 'nullable|exists:class_rooms,id',
             'role'     => 'required|string|exists:roles,name', // Assuming roles are validated
         ];
     }
@@ -34,6 +34,7 @@ class TeacherImport implements ToModel, WithHeadingRow,WithValidation
             'email'=>$row['email'],
             'password'=>bcrypt($row['password']),
             'phone'=>$row['phone'],
+            'class_id'=>$row['classroom_id'],
         ]);
 
         if(!empty($row['role'])){
