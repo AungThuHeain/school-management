@@ -2,12 +2,20 @@
 
 namespace App\Imports;
 
+use Log;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class TeacherImport implements ToModel,WithHeadingRow
+class TeacherImport implements ToModel, WithHeadingRow,WithValidation
 {
+
+
+
+
     /**
     * @param array $row
     *
@@ -27,5 +35,17 @@ class TeacherImport implements ToModel,WithHeadingRow
         }
 
         return $user;
+    }
+
+
+    public function rules(): array
+    {
+        return [
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'phone'    => 'nullable|string|max:15',
+            'role'     => 'nullable|string|exists:roles,name', // Assuming roles are validated
+        ];
     }
 }

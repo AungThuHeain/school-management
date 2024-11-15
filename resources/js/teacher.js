@@ -102,7 +102,6 @@ export default function teacher()
         this.errors=null
      },
 
-
      //excel import
      openImportModal()
      {
@@ -133,9 +132,14 @@ export default function teacher()
        })
        .catch((error)=>{
         this.errors = error.response.data.errors;
-        console.log(error.response.data.errors);
        })
      },
+     closeImportModel()
+     {
+        this.importModalOpen = false;
+        this.file = null;
+        document.getElementById('file').value = null;
+     }
 
    }
 }

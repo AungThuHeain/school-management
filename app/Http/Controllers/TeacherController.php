@@ -76,4 +76,9 @@ class TeacherController extends Controller
     {
         $this->teacherService->import($request);
     }
+
+    public function downloadDemo()
+    {
+         return response()->download(storage_path('demo/teacher-import.xls'));
+    }
 }

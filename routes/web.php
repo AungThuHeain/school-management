@@ -64,6 +64,8 @@ Route::group(['middleware'=>['auth','checkSchool']],function(){
     Route::get('reports',[AttendanceController::class,'report'])->name('reports');
     //attendance
     Route::resource('attendances',AttendanceController::class);
+    //demo import fiele
+    Route::get('teacher-demo',[TeacherController::class,'downloadDemo'])->name('teacher-demo');
 
 
 });

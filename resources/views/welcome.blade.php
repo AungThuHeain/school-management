@@ -245,19 +245,17 @@
     </div>
     <div class="cursor cursor-outer"></div>
     <h1>
-        <span class="banner-text text-red-500">B</span>
-        <span class="banner-text text-orange-500">O</span>
-        <span class="banner-text text-yellow-800">N</span>
-        <span class="banner-text text-green-500">E</span>
-        <span class="banner-text text-green-500 me-5"></span>
-        <span class="banner-text text-blue-500">T</span>
-        <span class="banner-text text-indigo-500">A</span>
-        <span class="banner-text text-violet-500">W</span>
-        <span class="banner-text text-violet-500 me-5"></span>
-        <span class="banner-text text-red-500">P</span>
-        <span class="banner-text text-orange-500">Y</span>
+        <span class="banner-text text-red-500">M</span>
+        <span class="banner-text text-orange-500">M</span>
+        <span class="banner-text text-yellow-800">S</span>
+        <span class="banner-text text-green-500">C</span>
+        <span class="banner-text text-blue-500">H</span>
+        <span class="banner-text text-indigo-500">O</span>
+        <span class="banner-text text-violet-500">O</span>
+        <span class="banner-text text-red-500">L</span>
+        {{-- <span class="banner-text text-orange-500">Y</span>
         <span class="banner-text text-yellow-500">A</span>
-        <span class="banner-text text-green-500">E</span>
+        <span class="banner-text text-green-500">E</span> --}}
     </h1>
     <div class="clockStyle fixed left-1 bottom-1 font-bold" id="clock"></div>
 </body>
