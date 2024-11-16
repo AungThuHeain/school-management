@@ -14,9 +14,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <section class="bg-gray-50 dark:bg-gray-900">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <body class="font-sans text-gray-900 bg-gray-50 antialiased">
+        <section class=" dark:bg-gray-900 my-20">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0">
                 <a href="/" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo">
                     MM School

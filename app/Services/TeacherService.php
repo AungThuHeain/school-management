@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Imports\TeacherImport;
+use App\Jobs\SendInvitationMail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherService
@@ -27,6 +28,10 @@ class TeacherService
         ]);
 
         $teacher->syncRoles($request->role);
+
+
+        // Dispatch job to send email
+       return  SendInvitationMail::dispatch($teacher,$request->password);
     }
 
     public function update(Request $request, String $id)

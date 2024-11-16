@@ -73,3 +73,8 @@ Route::group(['middleware'=>['auth','checkSchool','verified']],function(){
 });
 
 
+Route::get('mail',function()
+{
+    return view('mail.invitation');
+});
+

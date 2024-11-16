@@ -2,8 +2,11 @@
 
 namespace App\Imports;
 
+use App\Jobs\SendInvitationMail;
 use Log;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -29,19 +32,26 @@ class TeacherImport implements ToModel, WithHeadingRow,WithValidation
     */
     public function model(array $row)
     {
-        $user =  new User([
-            'name'=>$row['name'],
-            'email'=>$row['email'],
-            'password'=>bcrypt($row['password']),
-            'phone'=>$row['phone'],
-            'class_id'=>$row['classroom_id'],
-        ]);
+        return DB::transaction(function () use ($row) {
+            $user = User::create([
+                'name'      => $row['name'],
+                'email'     => $row['email'],
+                'password'  => bcrypt($row['password']),
+                'phone'     => $row['phone'],
+                'class_id'  => $row['classroom_id'],
+            ]);
 
-        if(!empty($row['role'])){
-            $user->assignRole($row['role']);
-        }
+            if (!empty($row['role'])) {
+                $user->assignRole($row['role']);
+            }
 
-        return $user;
+            $password = $row['password'];
+
+            // Dispatch job to send email
+            SendInvitationMail::dispatch($user,$password);
+
+            return $user;
+        });
     }
 
 }
