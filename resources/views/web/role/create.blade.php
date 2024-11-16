@@ -82,7 +82,7 @@
 
                                 <div class="flex justify-end">
                                     <button type="submit"
-                                        class="text-white bg-gradient-to-r from-lime-500 via-lime-600 to-lime-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><span>Create</span></button>
+                                        class="text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><span>Create</span></button>
                                 </div>
 
                             </form>

@@ -19,15 +19,14 @@ class AttendanceService
             $query->where('class_id', $filters['class_filter']);
         }
 
-        if(($filters['month_filter']) ?? 'all' !== 'all') {
-            $query->whereHas('attendances', function ($q) use ($filters) {
-                $q->whereMonth('attendance_date', $filters['month_filter']);
-            });
-        }
-
-        if (($filters['year_filter'] ?? 'all') !== 'all') {
-            $query->whereHas('attendances', function ($q) use ($filters) {
-                $q->whereYear('attendance_date', $filters['year_filter']);
+        if (($filters['month_filter'] ?? 'all') !== 'all' || ($filters['year_filter'] ?? 'all') !== 'all') {
+            $query->whereHas('attendances', function ($attendanceQuery) use ($filters) {
+                if (($filters['month_filter'] ?? 'all') !== 'all') {
+                    $attendanceQuery->whereMonth('attendance_date', $filters['month_filter']);
+                }
+                if (($filters['year_filter'] ?? 'all') !== 'all') {
+                    $attendanceQuery->whereYear('attendance_date', $filters['year_filter']);
+                }
             });
         }
 
