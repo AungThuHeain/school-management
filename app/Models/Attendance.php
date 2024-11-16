@@ -21,7 +21,7 @@ class Attendance extends Model
     //scope
     public function scopeFilter($query, $filters)
     {
-        $query->when($filter['s'] ?? false,function($query,$s){
+        $query->when($filters['s'] ?? false,function($query,$s){
             $query->where('name','like','%'.$s.'%')
             ->orWhereHas('school',function($query)use($s){
                 $query->where('name','like','%'.$s.'%');

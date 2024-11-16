@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -90,5 +91,10 @@ class User extends Authenticatable implements MustVerifyEmail
    public function class():BelongsTo
    {
         return $this->belongsTo(ClassRoom::class,'class_id');
+    }
+
+    public function attendances():HasMany
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

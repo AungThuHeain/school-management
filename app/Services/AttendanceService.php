@@ -11,17 +11,29 @@ class AttendanceService
 {
     public function getUsers()
     {
-        if(request('class_filter') == 'all')
-        {
-            return User::withoutRole('Owner')->filter(request()->only('s'))->get();
+        $filters = request()->only('class_filter', 'year_filter','month_filter','s');
+
+        $query = User::withoutRole('Owner')->filter($filters);
+
+        if (($filters['class_filter'] ?? 'all') !== 'all') {
+            $query->where('class_id', $filters['class_filter']);
         }
 
-        if(request()->has('class_filter') ){
-            return User::where('class_id',request('class_filter'))->withoutRole('Owner')->filter(request()->only('s'))->get();
+        if(($filters['month_filter']) ?? 'all' !== 'all') {
+            $query->whereHas('attendances', function ($q) use ($filters) {
+                $q->whereMonth('attendance_date', $filters['month_filter']);
+            });
         }
 
-         return User::withoutRole('Owner')->filter(request()->only('s'))->get();
+        if (($filters['year_filter'] ?? 'all') !== 'all') {
+            $query->whereHas('attendances', function ($q) use ($filters) {
+                $q->whereYear('attendance_date', $filters['year_filter']);
+            });
+        }
+
+        return $query->get();
     }
+
 
     public function getClasses()
     {

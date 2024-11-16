@@ -58,6 +58,19 @@
                                     </select>
                                 </div>
                                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
+                                    <select id="countries" name="month_filter" onchange="if(this.value != 0) this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="all">Filter by Month</option>
+
+                                    @php
+                                      $months = ['1'=>'January','2'=>'February','3'=>'March','4'=>'April','5'=>'May','6'=>'June','7'=>'July','8'=>'August','9'=>'September','10'=>'October','11'=>'November','12'=>'December'];
+                                    @endphp
+
+                                    @foreach ($months as $key=>$month)
+                                        <option value="{{$key}}" {{request('month_filter') == $key ? 'selected' : ''}}>{{$month}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                                         <select id="countries" name="class_filter" onchange="if(this.value != 0) this.form.submit()" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option value="all">Filter by class</option>
                                         @foreach ($classes as $class)
@@ -84,7 +97,18 @@
                             <th class="p-6 border text-xs  ">Name</th>
                             <th class="p-6 border text-xs">Class</th>
                             @php
-                                $today = \Carbon\Carbon::parse('today');;
+                                if(request('year_filter') != 'all' && request('year_filter') != null){
+                                    if(request('month_filter') != 'all'){
+                                        $filter_year = request('year_filter').'-'.request('month_filter').'-01';
+                                    }else {
+                                        $filter_year = request('year_filter').'-01-01';
+                                    }
+                                }else {
+                                    $filter_year = 'today';
+                                }
+
+
+                                $today = \Carbon\Carbon::parse($filter_year);
                                 $dates = [];
 
                                 for ($i = 1; $i <= $today->daysInMonth; ++$i) {
@@ -92,7 +116,6 @@
                                 }
                             @endphp
                             @foreach ($dates as $date)
-                            {{-- <h2>{{substr($date,11,13) == 'Sat' ? 'text-red-500' : ''}}</h2> --}}
                                 <th class="p-6 text-xs border text-center whitespace-nowrap -rotate-45 {{(substr($date,11,13) == 'Sat' || substr($date,11,13) == 'Sun') ? 'text-red-500' : ''}}"  >{{ substr($date,0,10) }}<br><span>{{substr($date,11,13)}}</span></th>
                             @endforeach
                         </tr>

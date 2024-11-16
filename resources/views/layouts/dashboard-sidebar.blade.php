@@ -26,7 +26,7 @@
             <a href="{{route('teachers.index')}}" class=" {{ Request::routeIs('teachers.*') ? 'bg-gray-50' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="ri-presentation-fill"></i>
                <span class="flex-1 ms-3 whitespace-nowrap">Teacher</span>
-               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\User::Role('Teacher')->count()}}</span>
+               <span class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{App\Models\User::withoutRole(['Owner','Student'])->count()}}</span>
             </a>
          </li>
           <li>
